@@ -26,6 +26,7 @@ public class UsercrudApplication implements CommandLineRunner {
         Usuario usuario = new Usuario();
         usuario.setName("John Doe");
         usuario.setEmail("john@example.com");
+        usuario.setSenha("123456");
 
         // Salvando o usuário no banco de dados
         usuarioRepository.save(usuario);
