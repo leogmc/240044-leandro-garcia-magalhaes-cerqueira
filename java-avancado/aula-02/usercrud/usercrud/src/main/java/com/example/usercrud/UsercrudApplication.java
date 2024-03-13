@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.usercrud.exceptions.ValorSomaExcedidoException;
 import com.example.usercrud.model.Usuario;
 import com.example.usercrud.repository.UsuarioRepository;
 
@@ -35,6 +36,12 @@ public class UsercrudApplication implements CommandLineRunner {
         Iterable<Usuario> usuarios = usuarioRepository.findAll();
         for (Usuario u : usuarios) {
             System.out.println(u.getName() + " - " + u.getEmail());
+        }
+        
+        try {
+        System.out.println(usuario.calculaSoma(451, 50));
+        } catch (ValorSomaExcedidoException e) {
+        	System.out.println("Erro detectado: " + e.getMessage());
         }
     }
 

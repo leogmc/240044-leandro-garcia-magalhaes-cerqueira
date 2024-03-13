@@ -1,10 +1,14 @@
 package com.example.usercrud.model;
+import java.util.List;
+
 import com.example.usercrud.exceptions.ValorSomaExcedidoException;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 
 
@@ -17,6 +21,9 @@ public class Usuario {
     private String email;
     private String senha;
     
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Post> posts;
+ 
     
     //Construtores
     public Usuario(Long id, String name, String email, String senha) {
@@ -66,7 +73,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	//métodos
+	//Métodos
 	
 	public int calculaSoma(int a, int b) throws ValorSomaExcedidoException  {
 		int soma = a + b;

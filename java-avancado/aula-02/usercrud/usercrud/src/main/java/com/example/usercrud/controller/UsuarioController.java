@@ -4,6 +4,8 @@ package com.example.usercrud.controller;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,16 +33,12 @@ public class UsuarioController {
 
 	@GetMapping
 	//O ideal é que retorne um DTO, já que nem todos os dados devem ser enviados para o usuário da aplicação
-	public List<Usuario> listaUsuarios(String nome) {
+	public List<Usuario> listaUsuarios() {
 		
 		List<Usuario> listaUsuarios = new ArrayList<>();
 		
-		//Verifica se o parametro (nome) é nulo
-		if (nome == null) {
 			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findAll();
-		} else {
-			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findByname(nome);
-		}
+
 		List<Usuario> lista = new ArrayList<Usuario>();
 		for (Usuario u : listaUsuarios) {
 			Usuario usuario = new Usuario(u);
@@ -54,7 +52,7 @@ public class UsuarioController {
 	public ResponseEntity<?> listaUsuarios(@PathVariable Long id) {
 		try {
 		Usuario usuario = usuarioRepository.getReferenceById(id);
-		
+		Hibernate.initialize(usuario); // Força a inicialização do proxy Hibernate
 		return ResponseEntity.ok(usuario);
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
