@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.usercrud.controller.DTO.UsuarioDTO;
 import com.example.usercrud.model.Post;
 import com.example.usercrud.model.Usuario;
 import com.example.usercrud.repository.PostRepository;
@@ -30,6 +31,9 @@ public class PostController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    
+    //GET METHODS ------------------------------------------------>
+    
     @GetMapping
     public List<Post> listaPosts() {
         return postRepository.findAll();
@@ -44,10 +48,13 @@ public class PostController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    //POST METHODS --------------------------------------------->
 
-    @PostMapping
+    @PostMapping("/criaPost")
     public ResponseEntity<Post> criarPost(@RequestBody Post post, UriComponentsBuilder uriBuilder) {
         Usuario usuario = usuarioRepository.findById(post.getUsuario().getId()).orElse(null);
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario);
         if (usuario == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -56,6 +63,8 @@ public class PostController {
         URI uri = uriBuilder.path("/post/{id}").buildAndExpand(post.getId()).toUri();
         return ResponseEntity.created(uri).body(post);
     }
+    
+    //PUT METHODS ------------------------------------------------->
 
     @PutMapping("/{id}")
     public ResponseEntity<Post> atualizarPost(@PathVariable Long id, @RequestBody Post postAtualizado) {
@@ -69,6 +78,8 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
+    //DELETE METHODS --------------------------------------------->
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarPost(@PathVariable Long id) {
         Post post = postRepository.findById(id).orElse(null);

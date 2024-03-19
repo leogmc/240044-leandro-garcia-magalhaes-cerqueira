@@ -77,7 +77,7 @@ public class ComunidadeController {
 		return "Comunidade salva!!!";
 	}
 
-	@PostMapping("/atribuiComunidadeAUsuarios/{projId}/{empId}")
+	@PostMapping("/atribuiComunidadeAUsuarios/{comunidadeId}/{userId}")
 	public String assignComunidadeToUsuarios(@PathVariable(name = "comunidadeId") Long comunidadeId, @PathVariable(name = "userId") Long userId) {
 		System.out.println("\nBusque a Comunidade existente e adicione o Usuário existente a esta Comunidade." + "\n");
 

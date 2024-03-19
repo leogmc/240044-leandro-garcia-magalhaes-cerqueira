@@ -39,12 +39,18 @@ public class UsuarioController {
 
 	@GetMapping
 	public List<UsuarioDTO> listaUsuarios(String nome) {
+	
+		//Formatação do parametro nome para remover os espacamentos indevidos
+		String nomeFormatado = nome.trim();
+		
+		
+		System.out.println(nomeFormatado);
 		List<Usuario> listaUsuarios = new ArrayList<>();
 		// Verifica se o parametro é nulo
-		if (nome == null) {
+		if (nomeFormatado == null) {
 			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findAll();
 		} else {
-			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findBynome(nome);
+			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findByNome(nomeFormatado);
 		}
 		List<UsuarioDTO> lista = new ArrayList<UsuarioDTO>();
 		for (Usuario u : listaUsuarios) {

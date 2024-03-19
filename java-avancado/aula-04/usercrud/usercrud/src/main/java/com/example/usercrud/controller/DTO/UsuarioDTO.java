@@ -8,7 +8,7 @@ import com.example.usercrud.model.Usuario;
 public class UsuarioDTO {
 	
 	private Long id;
-	private String name;
+	private String nome;
 	private String email;
 	
 	
@@ -24,8 +24,8 @@ public class UsuarioDTO {
 	public Long getId() {
 		return id;
 	}
-	public String getName() {
-		return name;
+	public String getnome() {
+		return nome;
 	}
 	public String getEmail() {
 		return email;
@@ -36,13 +36,13 @@ public class UsuarioDTO {
 	public UsuarioDTO(Usuario usuario) {
 		super();
 		this.id = usuario.getId();
-		this.name = usuario.getNome();
+		this.nome = usuario.getNome();
 		this.email = usuario.getEmail();
 	}
 	
 	@Override
 	public String toString() {
-		return "UsuarioDTO [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "UsuarioDTO [id=" + id + ", nome=" + nome + ", email=" + email + "]";
 	}
 	
 	

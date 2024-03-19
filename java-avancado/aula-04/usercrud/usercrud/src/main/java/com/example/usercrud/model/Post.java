@@ -1,5 +1,7 @@
 package com.example.usercrud.model;
 
+import com.example.usercrud.controller.DTO.UsuarioDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -53,6 +55,7 @@ public class Post {
 		this.usuario = usuario;
 	}
 
+	
 	
 	//Construtores
 	

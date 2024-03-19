@@ -11,6 +11,6 @@ public interface UsuarioRepository extends JpaRepository <Usuario, Long> {
 	//Esse é um método pré-existente da classe JpaRepository
 	//O padrão é que depois de "findBy" contenha o nome exato do atributo (da classe model) para que o método funcione
 	//Nesse caso, o nome do atributo é "nome"
-	public List<Usuario> findBynome(String nome);
+	public List<Usuario> findByNome(String nome);
 
 }
