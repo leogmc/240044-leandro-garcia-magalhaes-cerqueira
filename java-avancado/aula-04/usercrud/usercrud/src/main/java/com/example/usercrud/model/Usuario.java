@@ -1,19 +1,25 @@
 package com.example.usercrud.model;
 import java.util.List;
+import java.util.Set;
 
 import com.example.usercrud.exceptions.ValorSomaExcedidoException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 
 
 @Entity
 public class Usuario {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,12 +47,15 @@ public class Usuario {
 		this.email = usuario.getEmail();
 	}
     
-    
-
     public Usuario() {
 		super();
 	}
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    @JoinTable(name = "usuario_comunidade_mapping", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "comunidade_id"))
+    private Set<Comunidade> comunidades;
+    
+    
 	// Getters e Setters
     public Long getId() {
 		return id;
@@ -73,8 +82,16 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	//Métodos
+	public Set<Comunidade> getComunidades() {
+        return comunidades;
+    }
+
+    public void setComunidade(Set<Comunidade> comunidades) {
+        this.comunidades = comunidades;
+    }
+    
 	
+	//Métodos
 	public int calculaSoma(int a, int b) throws ValorSomaExcedidoException  {
 		int soma = a + b;
 		
@@ -83,6 +100,14 @@ public class Usuario {
 		}
 		return soma;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", posts=" + posts
+				+ ", comunidades=" + comunidades + "]";
+	}
+	
+	
 	
     
 }

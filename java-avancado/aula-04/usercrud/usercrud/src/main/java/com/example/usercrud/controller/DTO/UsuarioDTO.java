@@ -1,5 +1,8 @@
 package com.example.usercrud.controller.DTO;
 
+import java.util.Set;
+
+import com.example.usercrud.model.Comunidade;
 import com.example.usercrud.model.Usuario;
 
 public class UsuarioDTO {
@@ -8,6 +11,16 @@ public class UsuarioDTO {
 	private String name;
 	private String email;
 	
+	
+	private Set<Comunidade> comunidades;
+	
+	
+	public Set<Comunidade> getComunidades() {
+		return comunidades;
+	}
+	public void setComunidades(Set<Comunidade> comunidades) {
+		this.comunidades = comunidades;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -26,6 +39,13 @@ public class UsuarioDTO {
 		this.name = usuario.getNome();
 		this.email = usuario.getEmail();
 	}
+	
+	@Override
+	public String toString() {
+		return "UsuarioDTO [id=" + id + ", name=" + name + ", email=" + email + "]";
+	}
+	
+	
 	
 
 }
