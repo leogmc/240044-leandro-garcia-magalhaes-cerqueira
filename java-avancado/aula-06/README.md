@@ -42,7 +42,6 @@ pom.xml: Arquivo de configuração do Maven, onde estão definidas as dependênc
 - Maven
 - PostgreeSQL
 
-
 # Documentação da API:
 
 http://localhost:8080/swagger-ui/index.html#/
