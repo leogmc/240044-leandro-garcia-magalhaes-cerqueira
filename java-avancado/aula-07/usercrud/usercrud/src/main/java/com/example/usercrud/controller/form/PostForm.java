@@ -1,10 +1,6 @@
-package com.example.usercrud.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.example.usercrud.controller.form;
+import com.example.usercrud.controller.DTO.UsuarioDTO;
+import com.example.usercrud.model.Post;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -14,26 +10,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-@Entity
-public class Post {
+public class PostForm {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	//Atributos
 	private String titulo;
 	private String conteudo;
 	
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = false)
-	@JsonBackReference
-	private Usuario usuario;
+	private UsuarioDTO usuario;
+	
+	//Métodos
+		public Post toPost() {
+			Post post = new Post();
+			
+			post.setTitulo(titulo);
+			post.setConteudo(conteudo);
+			
+			return post; 
+		}
 
 	
 }
