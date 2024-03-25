@@ -40,3 +40,8 @@ width: 80%;
 .botao-adicionar:hover{
   background-color: #652c2c;
 }
+
+.span{
+  margin-left: 5px;
+  margin-top: -15px;
+}

@@ -12,6 +12,7 @@ import { ListarPesosComponent } from './components/listar-pesos/listar-pesos.com
 import { MenuSessaoComponent } from './components/menu-sessao/menu-sessao.component';
 import { CadastroSessaoComponent } from './components/cadastro-sessao/cadastro-sessao.component';
 import { ListaSessoesComponent } from './components/lista-sessoes/lista-sessoes.component';
+import { SessaoComponent } from './components/sessao/sessao.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'menuSessao', component : MenuSessaoComponent, canActivate : [AutenticacaoGuard]},
     { path: 'cadastroSessao', component : CadastroSessaoComponent, canActivate : [AutenticacaoGuard]},
     { path: 'sessoes', component : ListaSessoesComponent, canActivate : [AutenticacaoGuard]},
+    { path: 'sessoes/:id', component : SessaoComponent, canActivate : [AutenticacaoGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

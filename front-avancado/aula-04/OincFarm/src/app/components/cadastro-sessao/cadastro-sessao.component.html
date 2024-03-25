@@ -1,4 +1,5 @@
 <div class="form-container">
+
     <form class="formulario" [formGroup]="sessaoForm"  (ngSubmit)="onSubmit()">
         <h2 class="titulo">Cadastro do Sessão</h2>
 
@@ -15,21 +16,24 @@
             <mat-form-field appearance="outline" class="label-atividade">
                 <mat-label >Atividade</mat-label>
                 <mat-select formControlName="atividadesPlanejadas" id="atividade">
-                  <mat-option value="Controle de carrapatos e piolhos">Controle de carrapatos e piolhos</mat-option>
-                  <mat-option value="Controle de temperatura corporal">Controle de temperatura corporal</mat-option>
+                  <mat-option value="Ctrl. Carrapatos/Piolhos">Ctrl. Carrap./Piolhos</mat-option>
+                  <mat-option value="Ctrl. Temperatura corporal">Ctrl. Temp. corporal</mat-option>
                   <mat-option value="Desverminação">Desverminação</mat-option>
                   <mat-option value="Suplementação">Suplementação</mat-option>
-                  <mat-option value="Tratamento contra sarna">Tratamento contra sarna</mat-option>
-                  <mat-option value="Vacinação contra circovirose suína">Vacinação contra circovirose suína</mat-option>
-                  <mat-option value="Vacinação contra parvovirose suína">Vacinação contra parvovirose suína</mat-option>
-                  <mat-option value="Vacinação contra raiva">Vacinação contra raiva</mat-option>
-                  <mat-option value="Vacinação contra Rinite Atrófica">Vacinação contra Rinite Atrófica</mat-option>
+                  <mat-option value="Trat. Sarna">Trat. Sarna</mat-option>
+                  <mat-option value="Vcn. Circovirose suína">Vcn. Circovirose suína</mat-option>
+                  <mat-option value="Vcn. Parvovirose suína">Vcn. Parvovirose suína</mat-option>
+                  <mat-option value="Vcn. Raiva">Vcn. Raiva</mat-option>
+                  <mat-option value="Vcn. Rinite Atrófica">Vcn. Rinite Atrófica</mat-option>
                 </mat-select> 
               </mat-form-field>
               <button class="botao-adicionar" (click)="addAtividade()">+</button>
+
+              <div *ngIf="dialogoAtividade">
+                <p class="span">Atividade adicionada com sucesso!</p>
+              </div>
         </div>
               
-
         <div class="form-group">
             <mat-form-field appearance="outline" class="label-suino">
                 <mat-label >Selecione o Suíno</mat-label>
@@ -39,6 +43,10 @@
                 <mat-error *ngIf="sessaoForm.get('brincoSuino')?.touched && !sessaoForm.get('brincoSuino')?.valid">Escolha um suíno</mat-error>
             </mat-form-field>
             <button class="botao-adicionar" (click)="addSuino()" >+</button>
+
+            <div *ngIf="dialogoBrinco">
+                <p class="span">Brinco adicionado com sucesso!</p>
+              </div>
         </div>
 
         <div class="form-group">

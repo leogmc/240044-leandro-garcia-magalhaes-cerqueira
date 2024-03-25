@@ -31,7 +31,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @EqualsAndHashCode
-
 @Entity
 public class Usuario {
 	
